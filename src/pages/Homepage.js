@@ -3,10 +3,13 @@ import Layout from '../components/Layout';
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import fireDB from '../fireConfig';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function Homepage() {
     const [products, setProducts] = useState([]);
+    const { cartItems } = useSelector(state => state.cartReducer)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -33,7 +36,15 @@ function Homepage() {
 
     }
 
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
+    }, [cartItems])
+
+
+    const addToCart = (product) => {
+        dispatch({ type: 'ADD_TO_CART', payload: product });
+    }
     return <Layout>
         <div className='container'>
             <div className='row'>
@@ -49,7 +60,7 @@ function Homepage() {
                             <div className='product-actions'>
                                 <h2>{product.price} RS/-</h2>
                                 <div className='d-flex'>
-                                    <button className='mx-2'>ADD TO CART</button>
+                                    <button className='mx-2' onClick={() => addToCart(product)}>ADD TO CART</button>
                                     <button onClick={() => {
                                         navigate(`/productinfo/${product.id}`)
                                     }}>VIEW</button>

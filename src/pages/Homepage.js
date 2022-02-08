@@ -38,11 +38,18 @@ function Homepage() {
             <div className='row'>
                 {products.map((product) => {
                     return <div className='col-md-4'>
-                        <div className="m-2 p-1 product">
+                        <div className="m-2 p-1 product position-relative">
                             <div className='product-content'>
                                 <p>{product.name}</p>
                                 <div className='text-center'>
                                     <img src={product.imageURL} alt="" className="product-img" />
+                                </div>
+                            </div>
+                            <div className='product-actions'>
+                                <h2>{product.price} RS/-</h2>
+                                <div className='d-flex'>
+                                    <button className='mx-2'>ADD TO CART</button>
+                                    <button>VIEW</button>
                                 </div>
                             </div>
                         </div>

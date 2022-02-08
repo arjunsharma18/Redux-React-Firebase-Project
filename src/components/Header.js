@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 function Header() {
 
     const { cartItems } = useSelector(state => state.cartReducer)
+    const { user } = JSON.parse(localStorage.getItem('currentUser'))
 
     return <div className='header'>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,7 +18,7 @@ function Header() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/">users</Link>
+                            <Link className="nav-link active" aria-current="page" to="/">{user.email.substring(0, user.email.length - 10)}</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/">orders</Link>

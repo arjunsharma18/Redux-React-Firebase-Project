@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function Homepage() {
     const [products, setProducts] = useState([]);
     const { cartItems } = useSelector(state => state.cartReducer)
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -17,7 +18,9 @@ function Homepage() {
     }, [])
 
     async function getdata() {
+
         try {
+            setLoading(true)
             const users = await getDocs(collection(fireDB, "products"));
             const productsArray = [];
             users.forEach((doc) => {
@@ -27,11 +30,12 @@ function Homepage() {
                 };
                 productsArray.push(obj);
                 // doc.data() is never undefined for query doc snapshots
-
+                setLoading(false);
             });
             setProducts(productsArray);
         } catch (error) {
             console.log(error);
+            setLoading(false);
         }
 
     }
@@ -45,7 +49,7 @@ function Homepage() {
     const addToCart = (product) => {
         dispatch({ type: 'ADD_TO_CART', payload: product });
     }
-    return <Layout>
+    return <Layout loading={loading}>
         <div className='container'>
             <div className='row'>
                 {products.map((product) => {

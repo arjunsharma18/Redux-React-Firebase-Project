@@ -25,9 +25,7 @@ function Header() {
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/">{user.email.substring(0, user.email.length - 10)}</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/">orders</Link>
-                        </li>
+
                         <li className="nav-item">
                             <Link className="nav-link" to="/" onClick={logout}>logout</Link>
                         </li>

@@ -8,6 +8,9 @@ function CartPage() {
     const [totalAmount, setTotalAmount] = useState(0)
     const dispatch = useDispatch();
 
+    const placed = () => {
+        alert('Your Order is Placed');
+    }
 
     useEffect(() => {
         let temp = 0;
@@ -57,7 +60,7 @@ function CartPage() {
             <h1 className='total-amount'>Total Amount ={totalAmount} RS/-</h1>
         </div>
         <div className='d-flex justify-content-end mt-3'>
-            <button >PLACE ORDER</button>
+            <button onClick={placed}>PLACE ORDER</button>
         </div>
     </Layout>;
 }

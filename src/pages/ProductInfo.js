@@ -41,7 +41,7 @@ function ProductInfo() {
                             <hr></hr>
                             <p>{product.description}</p>
                             <div className='d-flex justify-content-end my-3'>
-                                <button>ADD TO CART</button>
+
                             </div>
                         </div>)}
                     </div>

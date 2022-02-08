@@ -34,7 +34,22 @@ function Homepage() {
 
 
     return <Layout>
-        <h1>Homepage</h1>
+        <div className='container'>
+            <div className='row'>
+                {products.map((product) => {
+                    return <div className='col-md-4'>
+                        <div className="m-2 p-1 product">
+                            <div className='product-content'>
+                                <p>{product.name}</p>
+                                <div className='text-center'>
+                                    <img src={product.imageURL} alt="" className="product-img" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                })}
+            </div>
+        </div>
 
     </Layout>;
 }
